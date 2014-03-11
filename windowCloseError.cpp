@@ -5,12 +5,8 @@
 #pragma comment(lib, "Release/ace_engine.lib")
 #endif
 /*
-内容: ウィンドウ終了時にエラーが発生する
-
-推測される原因:
-グローバル変数にテクスチャを作るなどして、Engine::Terminate()が呼ばれたあとに
-リソース解放が起きるとエラーになる。
-
+内容: 
+グローバル領域にテクスチャを作ると、プログラム終了時にエラーになる
 */
 
 
@@ -45,9 +41,9 @@ public:
 
 int main() {
 	EngineProvider engineProvider;
+	auto tex = Engine::GetGraphics()->CreateTexture2D(ToAString("img.png").c_str());;
 	ImgManager::init();
 	while(Engine::DoEvents()) {
 
 	}
-
 }
